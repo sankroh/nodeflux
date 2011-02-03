@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="utf-8"> 
+		<title>Northern Exposure</title>
+		<link rel="shortcut icon" href="/favicon.ico"> 
+		<link rel="stylesheet" href="/css/base.css">
+		<script type="text/javascript" src="http://use.typekit.com/vxx1ulk.js"></script> 
+        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="main">
+				<h1>Hello DRW Trading!</h1>
+				<div id="content">
+				    <div id="message">
+					    <p>I'm <strong>Rohit</strong> and I invite you to learn a bit more about me.</p> 
+					    <h3><em>Ready? Set, </em><a id="slide" href="#resume">Go</a>!</h3>
+					</div>
+				</div>
+			</div>
+			<div id="nav">Let's <a href="/">start all over</a>.</div>
+			<footer> 
+                <p>Made using Node.js, MongoDB, JQuery and Typekit. Source <a href="http://github.com/roadhead/nodeflux">here</a>.</p> 
+            </footer>
+		</div>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+		<script src="/js/icanhaz.js" ></script>
+		<script id="data" type="text/html">
+			<div class="resume">
+			    <div class="index">Resume</div>
+				{{{ html }}}
+			</div>
+		</script>
+		<script type="text/javascript">
+            $(document).ready(function() {
+    		    $('#slide').bind('click', function(e) {
+                    var res_data, html;
+                    $.ajax({
+                        type: 'GET',
+                        url: '/resume',
+                        dataType: 'html',
+                        success: function(d){res_data={html:d};html = ich.data(res_data); $('#content').append(html);$('#message').hide();}
+                    });
+                    e.preventDefault();
+                });
+            });
+        </script>
+	</body>
+</html>
+
